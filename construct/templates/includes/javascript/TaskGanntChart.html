@@ -1,0 +1,39 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Phase');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', ' Complete');
+      data.addColumn('string', 'Dependencies');
+
+
+      {% for task in tasks %}
+      
+      data.addRows([['{{task.id}}', '{{task.Name}}', '{{task.phase}}', new Date('{{task.start_date}}'), new Date('{{task.end_date}}'), null,{{task.Percentage}},  null ]]);
+
+      
+      {% endfor %}
+
+
+    
+      var options = {
+        height: 400,
+        gantt: {
+          trackHeight: 30
+        }
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div_gannt'));
+
+      chart.draw(data, options);
+    }
+  </script>

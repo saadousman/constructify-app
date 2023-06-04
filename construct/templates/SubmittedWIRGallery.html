@@ -1,0 +1,170 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.2
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets')}}/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets')}}/img/favicon.png">
+  <title>
+    Submitted Work inspection requests
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ url_for('static', filename='assets')}}/css/argon-dashboard.css?v=2.0.2"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+
+</head>
+
+
+
+<!-- Side NavBar Code starts here-->
+{% include 'includes/GlobalSideNavbar.html' %}
+<!-- Side NavBar Code end here-->
+<main class="main-content position-relative border-radius-lg ">
+  <!-- Navbar -->
+  {% include 'includes/GlobalNavbar.html' %}
+  <!-- End Navbar -->
+
+
+
+
+
+
+
+
+  <br><br><br><br><br><br><br>
+
+
+  <!--Creates containers and displays the images referenced to the task ID-->
+  {% for wir in submitted_wir %}
+  {% if wir.wir_id == passed_wir_id %}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-5">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>File Name      : <strong> {{wir.wir_file_name}}</strong></h6>
+            <h7>Submitted on   : <strong>{{wir.submitted_date}}</strong>  <br>
+            <h7>By             : <strong>{{wir.submitted_by}} </strong></h7> <br>
+            <h7>For WIR ID     : <strong>{{passed_wir_id}}</strong></h7> <br><br>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="col-md-8 p-lg-5 mx-auto my-5">
+              <div class="table-responsive p-0">
+                <img src="/static/icons/doc_icon.png" alt="User Image" width="70" height="70">
+
+                <br><br>
+                  <a class="btn btn-outline-primary" href="{{url_for('downloadwir',wir_name=wir.wir_file_name)}}" role="button">Download File</a>
+               
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% endif %}
+  {% endfor %}
+  <!--Displays Error Message if No Image references were found for the Task-->
+  {% if has_wir_id == "False" %}
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Error</h6>
+
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="col-md-8 p-lg-5 mx-auto my-5">
+
+              <h6>No Documents are uploaded by the Contractor for this Work inspection request</h6>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% endif %}
+
+
+
+  <!--   Core JS Files   -->
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/jquery/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/popper/popper.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/bootstrap/bootstrap.min.js"></script>
+  </body>
+
+  <!-- Optional plugins -->
+  <script src="{{ url_for('static', filename='assets')}}/vendor/PLUGIN_FOLDER/PLUGIN_SCRIPT.js"></script>
+
+  <!-- Argon JS -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-design-system.js"></script>
+
+
+</html>

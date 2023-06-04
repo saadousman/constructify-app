@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Untitled</title>
+  <meta name="description" content="This is an example of a meta description.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+
+  <h2>Constructify</h2>
+  <h1><span style="text-decoration: underline;">Payment Requests Submitted</span></h1>
+  <h3>Generated on {{today}} </h3>
+  <p>&nbsp;</p>
+  <h2>Payment Request Records</h2><br>
+  <p>Pending : {{pending_payments}}</p>
+  <p>Approved : {{approved_payments}}</p>
+  <p>Joint-Review : {{Joint_review_payments}}</p>
+  <p>Rejected : {{Rejected_payments}}</p>
+  <p>Total Payment Requests Submitted till date: {{total_payment}}</p>
+  <br>
+  <p>
+    -------------------------------------------------------------------------------------------------------------------------------------------------
+  </p>
+
+  <div class="table-responsive p-0">
+    <table class="table align-items-center mb-10">
+      <thead>
+        <tr>
+          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Request ID</th>
+          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Submitted Date</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <!-- #Use the following status types in forms: Submitted,Approved, Approved-As-Noted, Revise-and-ReSubmit, Rejected -->
+        <!--Constructing A single row for the Table-->
+        {% for payment in payment_list %}
+        <tr>
+          <td>
+            <div class="d-flex px-2 py-1">
+              <div class="d-flex flex-column justify-content-center">
+                <h6 class="mb-0 text-sm">{{payment.id}}</h6>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="text-xs font-weight-bold mb-0">{{payment.name}}</p>
+          </td>
+
+
+          {% if 'Interim-Payment' in payment.type %}
+          <td class="align-middle text-center">
+            <span class="badge badge-sm bg-gradient-info">{{payment.type}}</span>
+          </td>
+          {% endif %}
+          {% if 'On-Account Payment' in payment.type %}
+          <td class="align-middle text-center">
+            <span class="badge badge-sm bg-gradient-warning">{{payment.type}}</span>
+          </td>
+          {% endif %}
+          {% if 'Final Payment' in payment.type %}
+          <td class="align-middle text-center">
+            <span class="badge badge-sm bg-gradient-success">{{payment.type}}</span>
+          </td>
+          {% endif %}
+
+
+
+
+
+          <td class="align-middle text-center text-sm">
+            <p class="mb-0 text-sm">{{payment.description}}</p>
+          </td>
+          
+          <!--Conditional Badges for WIR Status starts here-->
+         
+          {% if 'Approved!' in payment.status %}
+          <td class="align-middle text-center">
+            <span class="badge badge-sm bg-gradient-success">{{payment.status}}</span>
+          </td>
+          {% endif %}
+          {% if 'Joint-Review' in payment.status %}
+          <td class="align-middle text-center">
+            <span class="badge badge-sm bg-gradient-info">{{payment.status}}</span>
+          </td>
+          {% endif %}
+          {% if 'Rejected' in payment.status %}
+          <td class="align-middle text-center">
+            <span class="badge badge-sm bg-gradient-danger">{{payment.status}}</span>
+          </td>
+          {% endif %}
+          {% if 'Submitted' in payment.status %}
+          <td class="align-middle text-center">
+            <span class="badge badge-sm bg-gradient-info">{{payment.status}}</span>
+          </td>
+          {% endif %}
+          <!--Conditional Badges for EOT Status ends here-->
+
+
+         
+       <td class="align-middle text-center">
+            <p class="mb-0 text-sm">{{payment.submitted_date}}</p>
+          </td>
+          <!--Button Group Starts here-->
+         
+
+
+          
+        </tr>
+
+        {% endfor %}
+
+
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+
+
+  <!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+</body>
+
+</html>

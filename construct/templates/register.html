@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Registration Page 
+{%endblock%}
+
+
+
+  {% block content%}
+  <img class="mb-4" src="https://static.vecteezy.com/system/resources/thumbnails/000/615/082/small/904-08.jpg" alt="">
+      <h1 class="h3 mb-3 font-weight-normal">
+          Please Create your Account
+      </h1>
+  
+  
+    <body class = "text-center">
+<div class="container" style="width:350px;margin-top:70px">
+<form method="POST" class="form-register" style=" ">
+    {{ form.hidden_tag() }}
+    {{ form.username.label() }}
+    <br>
+    {{ form.username(class="form-control", placeholder="Enter Your Username") }}
+
+     {{ form.email_address.label() }}
+     <br>
+    {{ form.email_address(class="form-control", placeholder="Enter Your Email Address") }}
+
+     {{ form.password1.label() }}
+     <br>
+    {{ form.password1(class="form-control", placeholder="Enter Your Password") }}
+
+     {{ form.password2.label() }}
+     <br>
+    {{ form.password2(class="form-control", placeholder="Confirm Password") }}
+    
+
+    {{ form.role.label() }}
+    <br>
+    {{ form.role(class="form-control", placeholder="Select role") }}
+    <br>
+
+
+    {{ form.contact_no.label() }}
+    <br>
+    {{ form.contact_no(class="form-control", placeholder="Enter Mobile Number (+94#########)")}}
+    <br>
+
+    {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+    <br>
+
+      <div class="checkbox mb-3" >
+               <h6>Already have an account?</h6>
+               <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Login</a>
+            </div>
+
+</form>
+</div>
+<br>
+
+
+    </body>
+  {% endblock %}

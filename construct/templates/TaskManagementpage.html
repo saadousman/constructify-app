@@ -1,0 +1,378 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.2
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets')}}/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets')}}/img/favicon.png">
+  <title>
+    Project Task Management
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ url_for('static', filename='assets')}}/css/argon-dashboard.css?v=2.0.2"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+
+</head>
+
+
+
+<!-- Side NavBar Code starts here-->
+{% include 'includes/GlobalSideNavbar.html' %}
+<!-- Side NavBar Code end here-->
+<main class="main-content position-relative border-radius-lg ">
+  <!-- Navbar -->
+  {% include 'includes/GlobalNavbar.html' %}
+  <!-- Dismissable Alerts -->
+  {% include 'includes/Alerts.html' %}
+
+  <!-- End Navbar -->
+  <!--Start Displaying Info Cards-->
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Pending Tasks</p>
+                  <h5 class="font-weight-bolder">
+                    {{pending_tasks}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                  <i class="fa fa-calendar-times-o text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Tasks In-Progress</p>
+                  <h5 class="font-weight-bolder">
+                    {{inprogress_tasks}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                  <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Tasks Completed</p>
+                  <h5 class="font-weight-bolder">
+                    {{completed_tasks}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                  <i class="ni ni-check-bold text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--Stop Displaying Info Cards-->
+
+
+
+
+
+
+  <br><br><br><br>
+  <!-- Buttons for Create Task and Others -->
+  <div class="col-10">
+    <div class="container">
+      <div class="row">
+        <div class="col text-left">
+          {% if current_user.role == 'Contractor' %}
+          <a href="{{url_for('TaskCreate')}}" class="btn btn-primary" role="button" aria-disabled="true"
+            target="_blank">Create New Task</a>
+          {% endif %}
+          <a href="{{url_for('TaskPDFPage')}}" class="btn btn-info" role="button" aria-disabled="true">Print PDF
+            report</a>
+          <a href="{{url_for('TaskPDFPage')}}?needs_to_be_emailed=Yes" class="btn btn-secondary" role="button"
+            aria-disabled="true" target="_blank">Email Report to StakeHolders</a>
+          {% if current_user.role == 'Contractor' %}
+          <a href="{{url_for('TaskImageUpload')}}" class="btn btn-success" role="button" aria-disabled="true"
+            target="_blank">Upload Task Photos</a>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- End Buttons -->
+  <!--New Row Begins-->
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Project Tasks</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-10">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task ID</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Description</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start
+                      Date</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End Date
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total
+                      Days</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                      Percentage Completed</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--Constructing A single row for the Table-->
+                  {% for task in tasks %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{task.id}}</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{task.Name}}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="mb-0 text-sm">{{task.description}}</p>
+                    </td>
+
+
+
+
+                    {% if 'Pending' in task.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-info">{{task.status}}</span>
+                    </td>
+                    {% endif %}
+                    {% if 'Completed' in task.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-success">{{task.status}}</span>
+                    </td>
+                    {% endif %}
+                    {% if 'In Progress' in task.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-warning">{{task.status}}</span>
+                    </td>
+                    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+                    <td class="align-middle text-center">
+                      <p class="mb-0 text-sm">{{task.phase}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="mb-0 text-sm">{{task.start_date}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="mb-0 text-sm">{{task.end_date}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="mb-0 text-sm">{{task.total_days}}</p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="mb-0 text-sm"><strong>{{task.Percentage}}%</strong></p>
+                    </td>
+                    <td class="align-middle">
+
+                      <div class="btn-group">
+
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          Action
+                        </button>
+
+                        <div class="dropdown-menu">
+                          {% if current_user.role == 'Contractor' %}
+                          <p><strong>
+                              <center>Mark as</center>
+                            </strong></p>
+                          <a class="dropdown-item" href="/TaskStatusUpdate/{{task.id}}?status=Completed">Completed</a>
+                          <a class="dropdown-item"
+                            href="/TaskStatusUpdate/{{task.id}}?status=In Progress">In-Progress</a>
+                          <a class="dropdown-item" href="/TaskStatusUpdate/{{task.id}}?status=Pending">Pending</a>
+                          <div class="dropdown-divider"></div>
+                          {% endif %}
+                          <a class="dropdown-item" href="{{url_for('ImageGallery',id=task.id)}}">View Photos</a>
+
+
+                          {% if current_user.role == 'Contractor' %}
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{{url_for('TaskPercentageUpdate')}}">Update Percentage</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="{{url_for('deleteTask',id=task.id)}}"><strong>Delete
+                              Task</strong> </a>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  {% endfor %}
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Row for the Tasks Table Ends-->
+  <!--New Row for Gannt Chart and Gallery Begins -->
+
+  <div class="container-fluid py-4">
+    <div class="row mt-4">
+      <div class="col-lg-12">
+        <div class="card z-index-2 h-100">
+          <div class="card-header pb-0">
+            <h6 class="text-capitalize">Project Task Progress chart</h6>
+            <p class="text-sm mb-0">
+              <i class="fa-light fa-list-check"></i>
+              <span class="font-weight-bold">{{task_count}}</span> Tasks Recorded
+            </p>
+          </div>
+
+          <!--Including javascript file to generate the Gannt Chart-->
+
+          {% include 'includes/javascript/TaskGanntChart.html' %}
+          <div class="card-body p-3">
+
+
+            <div class="chart">
+              {% if task_count != 0 %}
+              <div div id="chart_div_gannt" style="width: 1000; height: 1000;"></div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--Row for Gannt Chart Ends-->
+
+
+  <!--   Core JS Files   -->
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+
+
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/jquery/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/popper/popper.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/bootstrap/bootstrap.min.js"></script>
+  </body>
+
+  <!-- Optional plugins -->
+  <script src="{{ url_for('static', filename='assets')}}/vendor/PLUGIN_FOLDER/PLUGIN_SCRIPT.js"></script>
+
+  <!-- Argon JS -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-design-system.js"></script>
+
+
+</html>

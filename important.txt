@@ -1,0 +1,16 @@
+Download this WSL 2 kernel update (required).
+wsl --set-default-version 2
+
+
+
+apt-get install wkhtmltopdf
+apt-get install xvfb
+printf '#!/bin/bash\nxvfb-run -a --server-args="-screen 0, 1024x768x24" /usr/bin/wkhtmltopdf -q $*' > /usr/bin/wkhtmltopdf.sh
+chmod a+x /usr/bin/wkhtmltopdf.sh
+ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
+
+
+
+
+sudo strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+wkhtmltopdf http://www.google.com output.pdf

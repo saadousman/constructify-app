@@ -1,0 +1,125 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.2
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets')}}/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets')}}/img/favicon.png">
+  <title>
+    Group Chat
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ url_for('static', filename='assets')}}/css/argon-dashboard.css?v=2.0.2"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</head>
+
+
+
+<!-- Side NavBar Code starts here-->
+{% include 'includes/GlobalSideNavbar.html' %}
+<!-- Side NavBar Code end here-->
+<main class="main-content position-relative border-radius-lg ">
+  <!-- Navbar -->
+  {% include 'includes/GlobalNavbar.html' %}
+  <!-- End Navbar -->
+
+  <body>
+
+
+
+
+
+
+    <br><br>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h6>Group Chat box</h6>
+            </div>
+
+            <iframe src="https://organizations.minnit.chat/1231816443143366631/ConstructifyChat?embed&nickname="
+              style="border:none;width:100%;height:500px;" allowTransparency="true"></iframe>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+  <!--   Core JS Files   -->
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/jquery/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/popper/popper.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/bootstrap/bootstrap.min.js"></script>
+  </body>
+
+  <!-- Optional plugins -->
+  <script src="{{ url_for('static', filename='assets')}}/vendor/PLUGIN_FOLDER/PLUGIN_SCRIPT.js"></script>
+
+  <!-- Argon JS -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-design-system.js"></script>
+
+
+</html>

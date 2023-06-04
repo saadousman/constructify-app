@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Python Flask Upload and display image
+{%endblock%}
+
+
+
+  {% block content%}
+
+  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark" style="color:white" ›
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+  
+    <p><h1 align="center">Python Flask Upload and display image</h1></p>
+    <br><br>
+    <div class="container">
+      <h2>Select a file to upload</h2>
+    <div class="row">
+        
+        <br><br>
+       
+      
+        <form method="post" action="/UploadImage" enctype="multipart/form-data">
+            <dl>
+                <p>
+                    <input type="file" name="file" class="form-control" autocomplete="off" required>
+                </p>
+            </dl>
+            <p>
+                <input type="submit" value="Submit" class="btn btn-info">
+            </p>
+        </form>
+    </div>
+    </div>
+  </div>
+</div>
+<p class="mb-4 text-sm mx-auto">
+  Don't have an account?
+  <a href="{{ url_for('register_page')}}" class="text-primary text-gradient font-weight-bold">Sign up</a>
+</p>
+  {% endblock %}

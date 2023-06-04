@@ -1,0 +1,394 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.2
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='assets')}}/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets')}}/img/favicon.png">
+  <title>
+    Material Inspection Management
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ url_for('static', filename='assets')}}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ url_for('static', filename='assets')}}/css/argon-dashboard.css?v=2.0.2"
+    rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+
+</head>
+
+
+
+<!-- Side NavBar Code starts here-->
+{% include 'includes/GlobalSideNavbar.html' %}
+<!-- Side NavBar Code end here-->
+<main class="main-content position-relative border-radius-lg ">
+  <!-- Navbar -->
+  {% include 'includes/GlobalNavbar.html' %}
+  <!-- Dismissable Alerts -->
+  {% include 'includes/Alerts.html' %}
+
+  <!-- End Navbar -->
+  <!--Start Displaying Info Cards-->
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Pending </p>
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold"> MIRs</p>
+                  <h5 class="font-weight-bolder">
+                    {{pending_mirs}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                  <i class="fa fa-calendar-times-o text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Approved </p>
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold"> MIRs</p>
+                  <h5 class="font-weight-bolder">
+                    {{approved_mirs}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-success shadow-danger text-center rounded-circle">
+                  <i class="ni ni-check-bold text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Approved-As-Noted</p>
+                  <h5 class="font-weight-bolder">
+                    {{Approved_As_Noted_mirs}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-info shadow-success text-center rounded-circle">
+                  <i class="ni ni-ruler-pencil text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Revise-and-ReSubmit</p>
+                  <h5 class="font-weight-bolder">
+                    {{ReviseandReSubmit_mirs}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-secondary shadow-success text-center rounded-circle">
+                  <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Rejected  </p>
+                  <p class="text-sm mb-0 text-uppercase font-weight-bold"> MIRs </p>
+                    
+                  <h5 class="font-weight-bolder">
+                    {{Rejected_mirs}}
+                  </h5>
+
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="icon icon-shape bg-gradient-danger shadow-success text-center rounded-circle">
+                  <i class="ni ni-active-40 text-lg opacity-10" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--Stop Displaying Info Cards-->
+
+
+
+
+
+
+  <br><br><br><br>
+  <!-- Buttons for Create mir and Others -->
+ <div class="col-10">
+    <div class="container">
+      <div class="row">
+        <div class="col text-left">
+         {% if current_user.role == 'Contractor' %}
+          <a href="{{url_for('MIRCreate')}}" class="btn btn-primary" role="button" aria-disabled="true"
+            target="_blank">Create New MIR</a>
+          {% endif %}
+               <a href="{{url_for('MIRPDFPage')}}" class="btn btn-info" role="button" aria-disabled="true"
+            target="_blank">Print PDF report</a>
+               <a href="{{url_for('MIRPDFPage')}}?needs_to_be_emailed=Yes" class="btn btn-secondary" role="button" aria-disabled="true"
+            target="_blank">Email Report to StakeHolders</a>
+               {% if current_user.role == 'Contractor' %}
+          <a href="{{url_for('MIRDocumentUploadPage')}}" class="btn btn-success" role="button" aria-disabled="true"
+            target="_blank">Upload MIR Document</a>
+          {% endif %}
+            {% if current_user.role == 'Consultant' %}
+          <a href="{{url_for('ConsultantMIRDocumentUploadPage')}}" class="btn btn-primary" role="button" aria-disabled="true"
+            target="_blank">Upload MIR Documents with notes</a>
+          {% endif %} 
+
+        </div>
+
+      </div>
+    </div>
+  </div>  
+
+
+
+  <!-- End Buttons -->
+  <!--New Row Begins-->
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Reported MIR's</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-10">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-10">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">MIR ID</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Submitted Date</th>
+        
+
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- #Use the following status types in forms: Submitted,Approved, Approved-As-Noted, Revise-and-ReSubmit, Rejected -->
+                  <!--Constructing A single row for the Table-->
+                  {% for mir in mir_list %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{mir.id}}</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{mir.name}}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="mb-0 text-sm">{{mir.description}}</p>
+                    </td>
+                    
+                    <!--Conditional Badges for MIR Status starts here-->
+                   
+                    {% if 'Approved!' in mir.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-success">{{mir.status}}</span>
+                    </td>
+                    {% endif %}
+                    {% if 'Approved-As-Noted' in mir.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-info">{{mir.status}}</span>
+                    </td>
+                    {% endif %}
+                    {% if 'Revise-and-ReSubmit' in mir.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-warning">{{mir.status}}</span>
+                    </td>
+                    {% endif %}
+                    {% if 'Rejected' in mir.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-danger">{{mir.status}}</span>
+                    </td>
+                    {% endif %}
+                    {% if 'Submitted' in mir.status %}
+                    <td class="align-middle text-center">
+                      <span class="badge badge-sm bg-gradient-info">{{mir.status}}</span>
+                    </td>
+                    {% endif %}
+                    <!--Conditional Badges for EOT Status ends here-->
+
+                    <td class="align-middle text-center text-sm">
+                      <p class="mb-0 text-sm">{{mir.type}}</p>
+                    </td>
+
+                   
+                    <td class="align-middle text-center">
+                      <p class="mb-0 text-sm">{{mir.submitted_date}}</p>
+                    </td>
+
+                    <td class="align-middle">
+
+                          <div class="btn-group">
+                        
+                      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                         Action
+                        </button>
+                        
+                        <div class="dropdown-menu">
+                          {% if current_user.role == 'Consultant' %}
+                          <p><strong><center>Mark as</center></strong></p>
+                          <a class="dropdown-item" href="/MIRStatusUpdate/{{mir.id}}?status=Approved!">Approved</a>
+                          <a class="dropdown-item" href="/MIRStatusUpdate/{{mir.id}}?status=Approved-As-Noted">Approved-As-Noted</a>
+                          <a class="dropdown-item" href="/MIRStatusUpdate/{{mir.id}}?status=Revise-and-ReSubmit">Revise-and-ReSubmit</a>
+                          <a class="dropdown-item" href="/MIRStatusUpdate/{{mir.id}}?status=Rejected">Rejected</a>
+                          <div class="dropdown-divider"></div>
+                          {% endif %}
+                                 
+                          
+                          <a class="dropdown-item" href="{{url_for('mir_submitted_page',passed_id=mir.id)}}">Contractor's Documents</a>
+                         <a class="dropdown-item" href="{{url_for('mir_submitted_page_consultant',passed_id=mir.id)}}">Consultant's Documents</a> 
+                          {% if current_user.role == 'Contractor' %}
+                          <div class="dropdown-divider"></div>
+                         <a class="dropdown-item" href="{{url_for('deleteMIR',passed_id=mir.id)}}"><strong>Delete MIR</strong></a>
+                          {% endif %}
+                          
+                        </div>
+                      </div>
+                    </td>
+
+
+                    
+                  </tr>
+
+                  {% endfor %}
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Row for the mirs Table Ends-->
+  <!--New Row for Gannt Chart and Gallery Begins -->
+
+
+  <!--Row for Gannt Chart Ends-->
+
+
+  <!--   Core JS Files   -->
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/perfect-scrollbar.min.js">
+  </script>
+  <script src="{{ url_for('static', filename='assets')}}/js/plugins/smooth-scrollbar.min.js">
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+
+
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2">
+  </script>
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-dashboard.min.js?v=2.0.2">
+  </script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/jquery/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/popper/popper.min.js"></script>
+  <script src="{{ url_for('static', filename='assets')}}/vendor/bootstrap/bootstrap.min.js">
+  </script>
+  </body>
+
+  <!-- Optional plugins -->
+  <script src="{{ url_for('static', filename='assets')}}/vendor/PLUGIN_FOLDER/PLUGIN_SCRIPT.js">
+  </script>
+
+  <!-- Argon JS -->
+  <script src="{{ url_for('static', filename='assets')}}/js/argon-design-system.js"></script>
+
+
+</html>
