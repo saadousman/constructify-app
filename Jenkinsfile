@@ -13,8 +13,8 @@ node {
    
    stage('docker build/push') {
      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-      def currentDateTime = new Date().format("yyyy-MM-dd_HH-mm-ss")
-      def app = docker.build("sdousman/constructify:latest-jenkins-$currentDate", '.').push()
+      
+      def app = docker.build("sdousman/constructify:latest-jenkins-image", '.').push()
        
      }
    }
