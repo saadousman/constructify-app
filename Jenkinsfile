@@ -14,7 +14,7 @@ node {
    stage('docker build/push') {
      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
       def currentDateTime = env.BUILD_ID
-      def app = docker.build("sdousman/constructify:latest-jenkins-image-$currentDateTime", '.').push()
+      def app = docker.build("sdousman/constructify:latest-jenkins-image-pipeline-$currentDateTime", '.').push()
        
      }
    }
