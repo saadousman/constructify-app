@@ -82,7 +82,7 @@ def DashBoard():
     rejected_variations = VariationInspectionRequests.query.filter(VariationInspectionRequests.status == "Rejected").count()
 
 
-    page_message="Project Management Dashboard"
+    page_message="Project Management Dashboard Updates"
     page_name="Dashboard"
     return render_template('index.html', rejected_delays=rejected_delays,pending_delays=pending_delays, delay_count=delay_count, 
      inprogress_tasks=inprogress_tasks,completed_tasks=completed_tasks, tasks=tasks,
